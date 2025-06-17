@@ -16,31 +16,19 @@ export const Navbar = () => {
               to="/" 
               className="hover:text-red-400 transition-colors font-medium px-3 py-2 rounded"
             >
-              Home
+              ALL
             </Link>
             <Link 
               to="/movies" 
               className="hover:text-red-400 transition-colors font-medium px-3 py-2 rounded"
             >
-              Películas
+              MOVIES
             </Link>
             <Link 
               to="/recommendations" 
               className="hover:text-red-400 transition-colors font-medium px-3 py-2 rounded"
             >
-              Recomendaciones
-            </Link>
-            <Link 
-              to="/admin" 
-              className="hover:text-red-400 transition-colors font-medium px-3 py-2 rounded"
-            >
-              Admin
-            </Link>
-            <Link 
-              to="/about" 
-              className="hover:text-red-400 transition-colors font-medium px-3 py-2 rounded"
-            >
-              About
+              TRENDING
             </Link>
           </div>
         </div>

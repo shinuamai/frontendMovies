@@ -2,7 +2,7 @@
 import { useRoutes } from 'react-router-dom';
 import './App.css'
 import routes from './routes/Routes';
-import { Navbar } from './components/NavBar';
+import { Navbar } from './components/common/NavBar';
 
 export const App = () => {
   const element = useRoutes(routes);
