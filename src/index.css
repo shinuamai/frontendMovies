@@ -12,4 +12,5 @@
   -moz-osx-font-smoothing: grayscale;
   background-color: black;
   color: #fff;
+  overflow: hidden;
 }

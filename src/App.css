@@ -1,0 +1,61 @@
+/* Animación de flotación continua y fluida tipo agua */
+@keyframes float-water {
+  0% {
+    transform: translateY(0px) scale(1) rotate(-1deg);
+  }
+  20% {
+    transform: translateY(-10px) scale(1.02) rotate(1deg);
+  }
+  40% {
+    transform: translateY(-5px) scale(1.01) rotate(-2deg);
+  }
+  60% {
+    transform: translateY(10px) scale(0.99) rotate(2deg);
+  }
+  80% {
+    transform: translateY(5px) scale(1.01) rotate(-1deg);
+  }
+  100% {
+    transform: translateY(0px) scale(1) rotate(-1deg);
+  }
+}
+
+.float-water {
+  animation: float-water 3.5s linear infinite;
+  will-change: transform;
+}
+
+.float-water-paused {
+  animation-play-state: paused !important;
+}
+
+/* Animación de flotación para texto, más sutil y continua */
+@keyframes float-text {
+  0% {
+    transform: translateY(0px);
+  }
+  20% {
+    transform: translateY(-6px);
+  }
+  40% {
+    transform: translateY(-3px);
+  }
+  60% {
+    transform: translateY(6px);
+  }
+  80% {
+    transform: translateY(3px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.float-text {
+  animation: float-text 3s linear infinite;
+  will-change: transform;
+}
+
+.float-text-paused {
+  animation-play-state: paused !important;
+}
