@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { useMoviesCrud } from '../hooks/useMoviesCrud';
 import { mockMovies } from '../data';
 import type { Movie } from '../types';
+import { MovieCard } from '../components/MovieCard';
+
 
 export const Movies = () => {
   const { movies, loading, error, createMovie, updateMovie, deleteMovie } = useMoviesCrud();
@@ -146,31 +148,12 @@ return (
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {movies.map((movie) => (
-          <div key={movie.idMovie} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-            <img 
-              src={movie.image} 
-              alt={movie.title}
-              className="w-full h-64 object-cover"
-            />
-            <div className="p-4">
-              <h3 className="text-xl font-semibold mb-2 text-gray-800">{movie.title}</h3>
-              <p className="text-gray-600 mb-2">Director: {movie.author}</p>
-              <p className="text-sm text-gray-500 mb-2">Género: {movie.genere}</p>
-              <p className="text-gray-700 text-sm">{movie.description}</p>
-              <button
-                className="mt-2 px-3 py-1 bg-red-500 text-white rounded mr-2"
-                onClick={() => deleteMovie(movie.idMovie)}
-              >
-                Eliminar
-              </button>
-              <button
-                className="mt-2 px-3 py-1 bg-yellow-500 text-white rounded"
-                onClick={() => handleEdit(movie)}
-              >
-                Editar
-              </button>
-            </div>
-          </div>
+          <MovieCard
+            key={movie.idMovie}
+            movie={movie}
+            onEdit={handleEdit}
+            onDelete={deleteMovie}
+          />
         ))}
       </div>
     </div>
