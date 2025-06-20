@@ -1,92 +1,106 @@
-import { useState } from "react";
+import { type Dispatch, type SetStateAction } from "react";
+import type { Movie } from "../../types";
+import { useMoviesCrud } from "../../hooks/useMoviesCrud";
+import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 
-export const MovieModals = () => {
-  const [showAddModal, setShowAddModal] = useState(false);
-  const [showRecommendModal, setShowRecommendModal] = useState(false);
+export const MovieModals = ({
+  setShowMovieModal,
+  editMovie,
+  setEditMovie,
+}: {
+  editMovie: Movie | null;
+  setShowMovieModal: Dispatch<SetStateAction<boolean>>;
+  setEditMovie: Dispatch<SetStateAction<Movie | null>>;
+}) => {
+  const { register, handleSubmit, reset } = useForm<FieldValues>({
+    defaultValues: {
+      title: editMovie?.title ?? "",
+      author: editMovie?.author ?? "",
+      genere: editMovie?.genere ?? "",
+      image: editMovie?.image ?? "",
+      description: editMovie?.description ?? ""
+    },
+  });
+  const { createMovie, updateMovie } = useMoviesCrud();
+
+  // Manejar submit para agregar o actualizar
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    if (editMovie) {
+      await updateMovie(editMovie.idMovie, data);
+      setEditMovie(null);
+    } else {
+      await createMovie({
+        title: data.title,
+        author: data.author,
+        genere: data.genere,
+        image: data.image,
+        description: data.description
+      });
+    }
+  };
 
   return (
-    <div className="p-6">
-      {/* Botones */}
-      <div className="flex gap-4 mb-4">
-        <button
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-          onClick={() => setShowAddModal(true)}
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-white p-6 rounded-lg w-96 text-black">
+        <h2 className="text-xl font-bold mb-4">Agregar Película</h2>
+        {/* Formulario para agregar/editar */}
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="mb-8 bg-white p-4 rounded shadow-md"
         >
-          Agregar Película
-        </button>
-        <button
-          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-          onClick={() => setShowRecommendModal(true)}
-        >
-          Recomendar Película
-        </button>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input
+              {...register("title", { required: true })}
+              placeholder="Título"
+              className="border p-2 rounded text-gray-800"
+              required
+            />
+            <input
+              {...register("author", { required: true })}
+              placeholder="Director"
+              className="border p-2 rounded text-gray-800"
+              required
+            />
+            <input
+              {...register("genere", { required: true })}
+              placeholder="Género"
+              className="border p-2 rounded text-gray-800"
+              required
+            />
+            <input
+              {...register("image", { required: true })}
+              placeholder="URL de la imagen"
+              className="border p-2 rounded text-gray-800"
+              required
+            />
+            <textarea
+              {...register("description", { required: true })}
+              placeholder="Descripción"
+              className="border p-2 rounded col-span-1 md:col-span-2 text-gray-800"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded"
+          >
+            {editMovie ? "Actualizar" : "Agregar"}
+          </button>
+          {editMovie && (
+            <button
+              type="button"
+              className="mt-4 ml-2 px-4 py-2 bg-gray-400 text-white rounded"
+              onClick={() => {
+                setShowMovieModal(false);
+                setEditMovie(null);
+                reset()
+              }}
+            >
+              Cancelar
+            </button>
+          )}
+        </form>
       </div>
-
-      {/* Modal Agregar Película */}
-      {showAddModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg w-96 text-black">
-            <h2 className="text-xl font-bold mb-4">Agregar Película</h2>
-            <form className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium">Título</label>
-                <input type="text" className="w-full border p-2 rounded" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium">Director</label>
-                <input type="text" className="w-full border p-2 rounded" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium">Año</label>
-                <input type="number" className="w-full border p-2 rounded" />
-              </div>
-              <div className="flex justify-end gap-2">
-                <button
-                  type="button"
-                  className="px-4 py-2 bg-gray-400 rounded"
-                  onClick={() => setShowAddModal(false)}
-                >
-                  Cancelar
-                </button>
-                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded">
-                  Guardar
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* Modal Recomendar Película */}
-      {showRecommendModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg w-96 text-black">
-            <h2 className="text-xl font-bold mb-4">Recomendar Película</h2>
-            <form className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium">Título</label>
-                <input type="text" className="w-full border p-2 rounded" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium">Razón</label>
-                <textarea className="w-full border p-2 rounded"></textarea>
-              </div>
-              <div className="flex justify-end gap-2">
-                <button
-                  type="button"
-                  className="px-4 py-2 bg-gray-400 rounded"
-                  onClick={() => setShowRecommendModal(false)}
-                >
-                  Cancelar
-                </button>
-                <button type="submit" className="px-4 py-2 bg-green-600 text-white rounded">
-                  Enviar
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

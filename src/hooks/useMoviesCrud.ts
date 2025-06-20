@@ -17,6 +17,7 @@ export function useMoviesCrud() {
         setLoading(false);
       })
       .catch((err) => {
+        console.error(err)
         setError("Error al cargar películas");
         setLoading(false);
       });
