@@ -16,29 +16,30 @@ export const recommendationBackendService = {
   },
 
   // Crear recomendación
-  create: async (recommendation: RecommendationCreateRequest): Promise<Recommendation> => {
-    try {
-      console.log('🔄 Creating recommendation via Gateway...', recommendation);
-      const response = await recommendationGatewayClient.post('/api/recommendation', recommendation);
-      console.log('✅ Recommendation created:', response.data);
-      return response.data;
-    } catch (error) {
-      console.warn('⚠️ Gateway failed, trying direct connection...', error);
-      const response = await recommendationDirectClient.post('/', recommendation);
-      console.log('✅ Recommendation created (direct):', response.data);
-      return response.data;
-    }
-  },
+create: async (recommendation: RecommendationCreateRequest): Promise<Recommendation> => {
+  try {
+    console.log('🔄 Creating recommendation via Gateway...', recommendation);
+    const response = await recommendationGatewayClient.post('', recommendation);
+    console.log('✅ Recommendation created:', response.data);
+    return response.data;
+  } catch (error) {
+    console.warn('⚠️ Gateway failed, trying direct connection...', error);
+    const response = await recommendationDirectClient.post('', recommendation);
+    console.log('✅ Recommendation created (direct):', response.data);
+    return response.data;
+  }
+},
+
 
   // Actualizar recomendación
   update: async (id: number, recommendation: Partial<Recommendation>): Promise<Recommendation> => {
     try {
       console.log(`🔄 Updating recommendation ${id} via Gateway...`);
-      const response = await recommendationGatewayClient.put(`/api/recommendation/${id}`, recommendation);
+      const response = await recommendationGatewayClient.put(`${id}`, recommendation);
       return response.data;
     } catch (error) {
       console.warn('⚠️ Gateway failed, trying direct connection...', error);
-      const response = await recommendationDirectClient.put(`/${id}`, recommendation);
+      const response = await recommendationDirectClient.put(`${id}`, recommendation);
       return response.data;
     }
   },

@@ -2,10 +2,15 @@
 import { useState, useEffect } from 'react';
 import { mockRecommendations, mockMovies } from '../data';
 import type { Recommendation } from '../types';
+import { PencilIcon } from 'lucide-react';
+import { RecomendationModal } from '../components/modals/RecomendationModal'; 
 
 export const Recommendations = () => {
   const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showRecommendModal, setShowRecommendModal] = useState(false); 
+  const [recommendationToEdit, setRecommendationToEdit] = useState<Recommendation | null>(null); 
+
 
   useEffect(() => {
     // Simular carga de datos
@@ -20,6 +25,10 @@ export const Recommendations = () => {
     return movie?.title || 'Película no encontrada';
   };
 
+  const handleEdit = (rec: Recommendation) => {
+    setRecommendationToEdit(rec);           
+    setShowRecommendModal(true);            
+  };
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-64">
@@ -49,15 +58,25 @@ export const Recommendations = () => {
                   <span>Usuario: {rec.usuarioId}</span>
                 </div>
               </div>
-              <div className="flex flex-col items-end">
-                <span className={`px-3 py-1 rounded-full text-sm ${
-                  rec.visualizada 
-                    ? 'bg-green-100 text-green-800' 
-                    : 'bg-red-100 text-red-800'
-                }`}>
+                
+                <div className="flex flex-col items-end gap-2">
+                <button
+                  className="text-gray-500 hover:text-blue-600"
+                  onClick={() => handleEdit(rec)}
+                  title="Editar recomendación"
+                >
+                  <PencilIcon size={20} />
+                </button>
+
+                <span
+                  className={`px-3 py-1 rounded-full text-sm ${
+                    rec.visualizada ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                  }`}
+                >
                   {rec.visualizada ? 'Visualizada' : 'Pendiente'}
                 </span>
-                <span className="text-xs text-gray-400 mt-2">
+
+                <span className="text-xs text-gray-400 mt-1">
                   {new Date(rec.fechaRecomendacion).toLocaleDateString()}
                 </span>
               </div>
@@ -65,6 +84,12 @@ export const Recommendations = () => {
           </div>
         ))}
       </div>
+      {showRecommendModal && (
+        <RecomendationModal
+          setShowRecommendModal={setShowRecommendModal}
+          recommendationToEdit={recommendationToEdit}
+        />
+      )}
     </div>
   );
 };
