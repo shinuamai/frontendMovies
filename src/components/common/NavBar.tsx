@@ -40,6 +40,12 @@ export const Navbar = () => {
             >
               TRENDING
             </Link>
+            <Link 
+              to="/top-recommendations" 
+              className="hover:text-red-400 transition-colors font-medium px-3 py-2 rounded"
+            > 
+              🏆 TOP TRENDING
+            </Link>
           </div>
         </div>
       </div>

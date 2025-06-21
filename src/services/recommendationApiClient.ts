@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { AxiosInstance } from 'axios';  // ✅ Agregar 'type'
+import type { AxiosInstance } from 'axios';  
 import RECOMMENDATIONS_API_CONFIG from '../config/recommendationsApi';
 
 // Cliente para el Gateway
@@ -16,7 +16,7 @@ export const recommendationDirectClient: AxiosInstance = axios.create({
   headers: RECOMMENDATIONS_API_CONFIG.HEADERS
 });
 
-// Interceptors para logging y manejo de errores
+// Interceptores para logging de solicitudes y respuestas
 recommendationGatewayClient.interceptors.response.use(
   (response) => {
     console.log('✅ Gateway Response:', response.status, response.config.url);

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import type { Movie } from "../types";
 
-const API_URL = "http://localhost:9090/api/catalog"; // Cambia por tu endpoint real
+const API_URL = "http://localhost:9090/api/catalog"; 
 
 export function useMoviesCrud() {
   const [movies, setMovies] = useState<Movie[]>([]);

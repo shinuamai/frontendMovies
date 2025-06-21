@@ -1,4 +1,3 @@
-// src/hooks/useRecommendations.ts (reemplazar todo el contenido)
 import { useState, useEffect } from 'react';
 import { recommendationBackendService } from '../services/recommendationBackendService';
 import type { Recommendation, RecommendationCreateRequest } from '../types';
@@ -21,7 +20,7 @@ export const useRecommendations = (): UseRecommendationsReturn => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Cargar recomendaciones del backend real
+  
   const loadRecommendations = async () => {
     try {
       setLoading(true);
@@ -41,12 +40,12 @@ export const useRecommendations = (): UseRecommendationsReturn => {
     }
   };
 
-  // Cargar recomendaciones al montar el componente
+  
   useEffect(() => {
     loadRecommendations();
   }, []);
 
-  // Agregar nueva recomendación
+
   const addRecommendation = async (recData: RecommendationCreateRequest): Promise<void> => {
     try {
       console.log('🚀 Adding new recommendation:', recData);
@@ -62,7 +61,7 @@ export const useRecommendations = (): UseRecommendationsReturn => {
     }
   };
 
-  // Marcar como visualizada
+  
   const markAsViewed = async (id: number): Promise<void> => {
     try {
       console.log(`🚀 Marking recommendation ${id} as viewed...`);
@@ -83,7 +82,7 @@ export const useRecommendations = (): UseRecommendationsReturn => {
     }
   };
 
-  // Obtener recomendaciones por usuario
+  
   const getRecommendationsByUser = async (userId: number): Promise<Recommendation[]> => {
     try {
       console.log(`🚀 Getting recommendations for user ${userId}...`);
@@ -98,7 +97,7 @@ export const useRecommendations = (): UseRecommendationsReturn => {
     }
   };
 
-  // Obtener recomendaciones no visualizadas
+  
   const getUnviewedRecommendations = async (userId: number): Promise<Recommendation[]> => {
     try {
       console.log(`🚀 Getting unviewed recommendations for user ${userId}...`);
@@ -113,7 +112,7 @@ export const useRecommendations = (): UseRecommendationsReturn => {
     }
   };
 
-  // Eliminar recomendación
+
   const deleteRecommendation = async (id: number): Promise<void> => {
     try {
       console.log(`🚀 Deleting recommendation ${id}...`);
@@ -129,12 +128,12 @@ export const useRecommendations = (): UseRecommendationsReturn => {
     }
   };
 
-  // Refrescar recomendaciones
+  
   const refreshRecommendations = async (): Promise<void> => {
     await loadRecommendations();
   };
 
-  // Health check
+  
   const healthCheck = async (): Promise<void> => {
     try {
       console.log('🚀 Performing health check...');

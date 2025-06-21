@@ -51,5 +51,65 @@ export const mockMovies: Movie[] = [
     image: "https://image.tmdb.org/t/p/w500/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg",
     createdAt: "2024-01-19T10:00:00Z",
     updatedAt: "2024-01-19T10:00:00Z"
-  }
+  },
+  {
+    idMovie: 101,
+    title: "The Matrix",
+    genere: "Ciencia Ficción",
+    author: "Lana Wachowski",
+    description: "Un programador descubre que la realidad que conoce es una simulación...",
+    image: "https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg",
+    createdAt: "2024-01-20T10:00:00Z",
+    updatedAt: "2024-01-20T10:00:00Z"
+  },
+  {
+    idMovie: 102,
+    title: "Blade Runner 2049",
+    genere: "Ciencia Ficción",
+    author: "Denis Villeneuve",
+    description: "Un blade runner descubre un secreto que podría cambiar el mundo...",
+    image: "https://image.tmdb.org/t/p/w500/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg",
+    createdAt: "2024-01-21T10:00:00Z",
+    updatedAt: "2024-01-21T10:00:00Z"
+  },
+  {
+    idMovie: 103,
+    title: "Goodfellas",
+    genere: "Crimen",
+    author: "Martin Scorsese",
+    description: "La historia de Henry Hill y su vida en la mafia...",
+    image: "https://image.tmdb.org/t/p/w500/aKuFiU82s5ISJpGZp7YkIr3kCUd.jpg",
+    createdAt: "2024-01-22T10:00:00Z",
+    updatedAt: "2024-01-22T10:00:00Z"
+  },
+  {
+    idMovie: 104,
+    title: "The Godfather",
+    genere: "Drama",
+    author: "Francis Ford Coppola",
+    description: "La saga de la familia Corleone...",
+    image: "https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg",
+    createdAt: "2024-01-23T10:00:00Z",
+    updatedAt: "2024-01-23T10:00:00Z"
+  },
+  {
+    idMovie: 105,
+    title: "Dune",
+    genere: "Ciencia Ficción",
+    author: "Denis Villeneuve",
+    description: "Paul Atreides lidera una rebelión en el planeta desértico Arrakis...",
+    image: "https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
+    createdAt: "2024-01-24T10:00:00Z",
+    updatedAt: "2024-01-24T10:00:00Z"
+  },
+  {
+    idMovie: 106,
+    title: "Tenet",
+    genere: "Thriller",
+    author: "Christopher Nolan",
+    description: "Un agente secreto manipula el tiempo para prevenir la Tercera Guerra Mundial...",
+    image: "https://image.tmdb.org/t/p/w500/k68nPLbIST6NP96JmTxmZijEvCA.jpg",
+    createdAt: "2024-01-25T10:00:00Z",
+    updatedAt: "2024-01-25T10:00:00Z"
+  },
 ];
