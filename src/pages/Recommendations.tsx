@@ -67,7 +67,7 @@ export const Recommendations = () => {
         peliculaId: currentRec.peliculaId,
         razonRecomendacion: currentRec.razonRecomendacion,
         puntuacionPredicha: currentRec.puntuacionPredicha,
-        visualizada: newStatus, // Solo cambiar este campo
+        visualizada: newStatus,
         fechaRecomendacion: currentRec.fechaRecomendacion
       };
 
