@@ -6,6 +6,7 @@ export interface Movie {
   author: string;
   description: string;
   image: string;
+  trailer: string;
   createdAt?: string;
   updatedAt?: string;
 }
@@ -16,6 +17,7 @@ export interface MovieCreateRequest {
   author: string;
   description: string;
   image: string;
+  trailer: string;
 }
 
 export interface MovieUpdateRequest {
@@ -24,4 +26,5 @@ export interface MovieUpdateRequest {
   author?: string;
   description?: string;
   image?: string;
+  trailer?: string;
 }

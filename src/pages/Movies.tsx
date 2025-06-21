@@ -7,7 +7,8 @@ import { RecomendationModal } from "../components/modals/RecomendationModal";
 import type { Movie } from "../types";
 
 export const Movies = () => {
-  const { movies, loading, error, deleteMovie } = useMoviesCrud();
+  const { movies, loading, error, deleteMovie, refetchMovies } =
+    useMoviesCrud();
 
   // Estado para el formulario
 
@@ -15,7 +16,10 @@ export const Movies = () => {
 
   const [showMovieModal, setShowMovieModal] = useState(false);
   const [showRecommendModal, setShowRecommendModal] = useState(false);
-
+  const handlerEditMovie = (movie: Movie) => {
+    setEditMovie(movie);
+    setShowMovieModal(true);
+  };
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-64">
@@ -57,7 +61,7 @@ export const Movies = () => {
           <MovieCard
             key={movie.idMovie}
             movie={movie}
-            onEdit={() => setEditMovie(movie)}
+            onEdit={() => handlerEditMovie(movie)}
             onDelete={deleteMovie}
           />
         ))}
@@ -68,6 +72,7 @@ export const Movies = () => {
           setShowMovieModal={setShowMovieModal}
           editMovie={editMovie}
           setEditMovie={setEditMovie}
+          refetchMovies={refetchMovies}
         />
       )}
       {/* Modal Recomendar Película */}
